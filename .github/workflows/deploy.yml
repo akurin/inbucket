@@ -22,9 +22,12 @@ jobs:
         uses: tailscale/github-action@v2
         with:
           authkey: ${{ secrets.TAILSCALE_KEY }}
-          args: --login-server=https://morjoffhs.duckdns.org
+          args: --login-server=https://headscale.morjoff.com
 
       - name: Deploy to Kubernetes with Helm
         run: |
-          helm upgrade --install \
-            inbucket helm --values values.yaml
+          helm upgrade --install inbucket . --values values.yaml \
+          --set "authenticatedEmails[0]=${{ secrets.OAUTH2_PROXY_AUTHENTICATED_EMAIL }}" \
+          --set "oauth2Proxy.clientId=${{ secrets.OAUTH2_PROXY_CLIENT_ID }}" \
+          --set "oauth2Proxy.clientSecret=${{ secrets.OAUTH2_PROXY_CLIENT_SECRET }}" \
+          --set "oauth2Proxy.cookieSecret=${{ secrets.OAUTH2_PROXY_COOKIE_SECRET }}" \
