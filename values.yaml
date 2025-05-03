@@ -1,11 +1,15 @@
-image:
+inbucketImage:
   repository: inbucket/inbucket
   tag: 3.0.4
   pullPolicy: IfNotPresent
 
+oauth2ProxyImage:
+  repository: quay.io/oauth2-proxy/oauth2-proxy
+  tag: v7.9.0
+
 service:
   port:
-    http: 9000
+    http: 4180
     smtp: 25
     pop3: 1100
 

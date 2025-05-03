@@ -15,8 +15,8 @@ spec:
     spec:
       containers:
         - name: inbucket
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+          image: "{{ .Values.inbucketImage.repository }}:{{ .Values.inbucketImage.tag }}"
+          imagePullPolicy: "{{ .Values.inbucket.image.pullPolicy }}"
           envFrom:
             - configMapRef:
                 name: {{ include "inbucket.name" . }}-configmap
@@ -41,7 +41,7 @@ spec:
             initialDelaySeconds: 10
             timeoutSeconds: 5
         - name: oauth2-proxy
-          image: quay.io/oauth2-proxy/oauth2-proxy:v7.2.0
+          image: "{{ .Values.oauth2ProxyImage.repository }}:{{ .Values.oauth2ProxyImage.tag }}"
           args:
             - --provider=google
             - --upstream=http://127.0.0.1:9000
