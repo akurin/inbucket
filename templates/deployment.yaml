@@ -16,7 +16,7 @@ spec:
       containers:
         - name: inbucket
           image: "{{ .Values.inbucketImage.repository }}:{{ .Values.inbucketImage.tag }}"
-          imagePullPolicy: "{{ .Values.inbucket.image.pullPolicy }}"
+          imagePullPolicy: "{{ .Values.inbucketImage.pullPolicy }}"
           envFrom:
             - configMapRef:
                 name: {{ include "inbucket.name" . }}-configmap
