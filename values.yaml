@@ -7,6 +7,13 @@ oauth2ProxyImage:
   repository: quay.io/oauth2-proxy/oauth2-proxy
   tag: v7.9.0
 
+oauth2Proxy:
+  clientId: ""
+  clientSecret: ""
+  cookieSecret: ""
+
+authenticatedEmails: []
+
 service:
   port:
     http: 4180
@@ -17,11 +24,11 @@ extraEnv:
   INBUCKET_SMTP_ACCEPTDOMAINS: "morjoff.com"
 
 ingress:
+  enabled: true
   className: traefik
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
     traefik.ingress.kubernetes.io/router.middlewares: default-inbucket-redirect@kubernetescrd
-
   hosts:
     - host: inbucket.morjoff.com
       paths:

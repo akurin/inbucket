@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "inbucket.fullname" . }}-test"
+  labels:
+    {{- include "inbucket.labels" . | nindent 4 }}
+  annotations:
+    helm.sh/hook: test
+spec:
+  restartPolicy: Never
+  containers:
+    - name: curl
+      image: curlimages/curl:latest
+      command:
+        - curl
+        - --fail
+        - "http://{{ include "inbucket.fullname" . }}-http.{{ .Release.Namespace }}.svc.cluster.local:{{ .Values.service.port.http }}"
