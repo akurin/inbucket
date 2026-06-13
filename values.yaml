@@ -17,6 +17,7 @@ extraEnv:
   INBUCKET_SMTP_ACCEPTDOMAINS: "morjoff.com"
 
 ingress:
+  className: traefik
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
     traefik.ingress.kubernetes.io/router.middlewares: default-inbucket-redirect@kubernetescrd
@@ -26,9 +27,6 @@ ingress:
       paths:
         - path: /
           pathType: Prefix
-          backend:
-            serviceName: inbucket.local
-            servicePort: 80
   tls:
     - secretName: inbucket.morjoff.com
       hosts:
