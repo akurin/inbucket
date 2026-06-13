@@ -1,11 +1,11 @@
 inbucketImage:
   repository: inbucket/inbucket
-  tag: 3.0.4
+  tag: 3.1.1
   pullPolicy: IfNotPresent
 
 oauth2ProxyImage:
   repository: quay.io/oauth2-proxy/oauth2-proxy
-  tag: v7.9.0
+  tag: v7.15.3
 
 oauth2Proxy:
   clientId: ""
